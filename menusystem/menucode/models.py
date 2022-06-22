@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Category(models.Model):
-    placementId = models.IntegerField(null=False, blank=False)
+    placementId = models.IntegerField(null=False, blank=False, unique=True)
     name = models.CharField(max_length=200, null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)

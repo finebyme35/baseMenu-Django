@@ -24,15 +24,20 @@ def getCategory(request, pk):
 
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
+
 def createCategorys(request):
     categoryForm = CategoryForm()
+    categoryObj = Category.objects.get(placementId=request.data.placementId)
     if request.method == 'POST':
         if categoryForm.is_valid():
-            category = Category.objects.create(
+            if categoryObj != None:
+                return "Başka bir sıralama numarası giriniz."
+            else:
+                category = Category.objects.create(
                 name=request.name, 
-            )
-            serializer = CategorySeriliazer(category, many=False)
-            return Response(serializer.data)
+                )
+                serializer = CategorySeriliazer(category, many=False)
+                return Response(serializer.data)
         else:
             return Response("Girdiğiniz bilgileri tekrar kontrol ediniz!")
     
@@ -42,6 +47,9 @@ def createCategorys(request):
 @permission_classes([IsAdminUser])
 def updateCategorys(request, pk):
     data = request.data
+    categoryObj = Category.objects.get(placementId=data.placementId)
+    if categoryObj != None:
+        return "Başka bir sıralama numarası giriniz."
     category = Category.objects.get(id=pk)
     category.name = data['name']
     category.save()
