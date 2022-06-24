@@ -1,12 +1,21 @@
+from gc import get_objects
 from django.contrib import admin
-from menucode.forms import CategoryForm
 from menucode.models import Product, Category
-
+from rest_framework.response import Response
+from menucode.serializers import CategorySeriliazer
+from menucode.forms import CategoryAdminForm
 # Register your models here.
-class SuperUserAdmin(admin.ModelAdmin):
-    readonly_fields = ('createdAt', 'updatedAt')
-    
-            
+class ProductAdmin(admin.ModelAdmin):
+    exclude = ('createdAt', 'updatedAt')
+    class Meta:
+        model = Product
+
+class CategoryAdmin(admin.ModelAdmin):
+    exclude = ('createdAt', 'updatedAt')
+    form = CategoryAdminForm
    
-admin.site.register(Product, SuperUserAdmin)
-admin.site.register(Category, SuperUserAdmin)
+    class Meta:
+        model = Category
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)

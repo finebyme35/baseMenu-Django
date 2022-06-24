@@ -4,14 +4,15 @@ from django.db import models
 
 
 class Category(models.Model):
-    placementId = models.IntegerField(null=False, blank=False, unique=True)
+    placementId = models.IntegerField(null=False, blank=False)
     name = models.CharField(max_length=200, null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.name
-
+        return str(self.name)
+    
+     
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=False, blank=False)

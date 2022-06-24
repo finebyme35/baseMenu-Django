@@ -1,4 +1,4 @@
-import type { InferGetStaticPropsType } from "next";
+import type { InferGetServerSidePropsType } from "next";
 
 interface Category {
   id: number;
@@ -10,13 +10,14 @@ interface Category {
 interface Product {
   id: number;
   name: string;
+  image: string;
   description: string;
   price: number;
 }
 export async function getServerSideProps() {
   const res = await fetch("http://localhost:8000/api/category/");
   const categorys: Category[] = await res.json();
-
+  categorys.sort((a, b) => a.placementId - b.placementId);
   return {
     props: { categorys }, // will be passed to the page component as props
   };
@@ -24,7 +25,7 @@ export async function getServerSideProps() {
 
 function Home({
   categorys,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       {categorys.map((category) => {
