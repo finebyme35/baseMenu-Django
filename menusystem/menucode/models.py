@@ -4,11 +4,14 @@ from django.db import models
 
 
 class Category(models.Model):
-    placementId = models.IntegerField(null=False, blank=False)
+    placementId = models.PositiveIntegerField(default=1,blank=False,null=False)
     name = models.CharField(max_length=200, null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-
+    class Meta:
+        ordering=['placementId']
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
     def __str__(self) -> str:
         return str(self.name)
     

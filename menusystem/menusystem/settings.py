@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,14 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%njjy*i)_*jf4#l^18#s%fp^k$arh^ns#_7t)x%^q-s)qtd^6c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.lukkanscoffee.com', 'lukkanscoffee.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "semantic_admin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'menucode.apps.MenucodeConfig',
+    'adminsortable2'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'menusystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ # os.path.join(BASE_DIR, 'frontend/build')
+         'DIRS': [ os.path.join(BASE_DIR, 'frontend/build')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -92,6 +94,17 @@ DATABASES = {
         },
     },
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "mssql",
+#         "NAME": "lukkansc_alive",
+#         "HOST": "DESKTOP-N86EEKT\SQLEXPRESS",
+#         "PORT": "",
+#         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
+#         },
+#     },
+# }
 
 # test Local Db
 # DATABASES = {
@@ -140,7 +153,8 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    os.path.join(BASE_DIR, 'frontend/build/static'),
+    BASE_DIR / 'static',
 ]
 
 MEDIA_ROOT = 'static/images'
