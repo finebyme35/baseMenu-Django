@@ -97,7 +97,7 @@ DATABASES = {
         },
     },
 }
-
+DATABASE_CONNECTION_POOLING = False
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "mssql",
