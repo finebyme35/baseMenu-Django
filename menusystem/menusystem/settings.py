@@ -85,20 +85,16 @@ WSGI_APPLICATION = 'menusystem.wsgi.application'
 # Live Canlı DB
 DATABASES = {
     "default": {
-        "ENGINE": "django_pyodbc",
-        "NAME": "lukkansc_alive",
-        "USER": "lukkansc_oguz",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "lukkansc_oguz",
+        "USER": "lukka_oguz",
         "PASSWORD": os.environ.get('DB_PASS'),
-        "HOST": "185.8.128.65",
-        'Trusted_Connection': 'no', 
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
-            'host_is_server': True
-        },
+        "HOST": "localhost",
+        "PORT": "3306",
     },
 }
 
-cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='185.8.128.65';DATABASE='lukkansc_alive';UID='lukkansc_oguz';PWD='os.environ.get('DB_PASS'))
-cursor = cnxn.cursor()
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "mssql",
