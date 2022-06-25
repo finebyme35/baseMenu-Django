@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
+import pyodbc
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,19 +85,20 @@ WSGI_APPLICATION = 'menusystem.wsgi.application'
 # Live Canlı DB
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
+        "ENGINE": "django_pyodbc",
         "NAME": "lukkansc_alive",
         "USER": "lukkansc_oguz",
         "PASSWORD": os.environ.get('DB_PASS'),
         "HOST": "185.8.128.65",
-        "PORT": "",
         'Trusted_Connection': 'no', 
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
-            'extra_params': 'Authentication=ActiveDirectoryMsi;Encrypt=yes;TrustServerCertificate=no'
+            'host_is_server': True
         },
     },
 }
-DATABASE_CONNECTION_POOLING = False
+
+# cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='185.8.128.65';DATABASE='lukkansc_alive';UID='lukkansc_oguz';PWD='os.environ.get('DB_PASS'))
+# cursor = cnxn.cursor()
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "mssql",
