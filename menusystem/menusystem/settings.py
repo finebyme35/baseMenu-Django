@@ -85,13 +85,15 @@ WSGI_APPLICATION = 'menusystem.wsgi.application'
 # Live Canlı DB
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
+        "ENGINE": "sql_server.pyodbc",
         "NAME": "lukkansc_alive",
         "USER": "lukkansc_oguz",
         "PASSWORD": os.environ.get('DB_PASS'),
         "HOST": "185.8.128.65",
         "PORT": "",
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
+            'host_is_server': True,
+            'extra_params': 'TDS_VERSION=8.0'
         },
     },
 }
