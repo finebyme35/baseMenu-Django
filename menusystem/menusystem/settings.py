@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure <%njjy*i)_*jf4#l^18#s%fp^k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.lukkanscoffee.com', 'lukkanscoffee.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.lukkanscoffee.com', 'lukkanscoffee.com', 'lukkans.herokuapp.com']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,7 +88,7 @@ DATABASES = {
         "ENGINE": "mssql",
         "NAME": "lukkansc_alive",
         "USER": "lukkansc_oguz",
-        "PASSWORD": "hj8d6H_4",
+        "PASSWORD": os.environ.get('DB_PASS'),
         "HOST": "185.8.128.65",
         "PORT": "",
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
@@ -157,7 +158,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR /  'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -171,3 +173,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
+
+if os.getcwd() == '/app':
+    DEBUG = False
