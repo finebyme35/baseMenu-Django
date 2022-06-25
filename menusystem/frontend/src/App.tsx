@@ -19,7 +19,12 @@ interface Product {
 function App() {
   const [categorys, setCategorys] = useState<Category[]>([])
   const handleRequest = async() => {
-    const res = await fetch("http://localhost:8000/api/category/");
+    const res = await fetch("https://lukkanscoffee.com/api/category/",{
+      mode: "no-cors",
+      headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    }});
     setCategorys(await res.json())
     categorys.sort((a, b) => a.placementId - b.placementId);
   }

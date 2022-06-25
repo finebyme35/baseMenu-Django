@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%njjy*i)_*jf4#l^18#s%fp^k$arh^ns#_7t)x%^q-s)qtd^6c'
+
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure <%njjy*i)_*jf4#l^18#s%fp^k$arh^ns#_7t)x%^q-s)qtd^6c>")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.lukkanscoffee.com', 'lukkanscoffee.com']
-
 
 # Application definition
 
@@ -165,3 +165,9 @@ MEDIA_ROOT = 'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
