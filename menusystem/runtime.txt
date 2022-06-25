@@ -1,2 +1,1 @@
-unixodbc-dev
 python-3.10.1
