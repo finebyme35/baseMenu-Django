@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'menusystem.wsgi.application'
 # Live Canlı DB
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "lukkansc_oguz",
-        "USER": "lukka_oguz",
-        "PASSWORD": os.environ.get('DB_PASS'),
-        "HOST": "localhost",
-        "PORT": "3306",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "dfapu0ssmj5f07",
+        "USER": "fgwsaxigttslsx",
+        "PASSWORD": "4ce420483f909e706543b592519802e0affe59fc14e412293128363765e44603",
+        "HOST": "ec2-52-212-228-71.eu-west-1.compute.amazonaws.com",
+        "PORT": "5432",
     },
 }
 
