@@ -97,8 +97,8 @@ DATABASES = {
     },
 }
 
-# cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='185.8.128.65';DATABASE='lukkansc_alive';UID='lukkansc_oguz';PWD='os.environ.get('DB_PASS'))
-# cursor = cnxn.cursor()
+cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='185.8.128.65';DATABASE='lukkansc_alive';UID='lukkansc_oguz';PWD='os.environ.get('DB_PASS'))
+cursor = cnxn.cursor()
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "mssql",
