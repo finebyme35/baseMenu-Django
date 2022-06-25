@@ -19,8 +19,9 @@ interface Product {
 function App() {
   const [categorys, setCategorys] = useState<Category[]>([])
   const handleRequest = async() => {
-    const res = await fetch("https://lukkans.herokuapp.com/cec2-52-212-228-71.eu-west-1.compute.amazonaws.com:14713/api/category/", {mode: "no-cors"});
-    setCategorys(await res.json())
+    const res = await fetch("https://lukkans.herokuapp.com/api/category/");
+    setCategorys(await res.json());
+    
     categorys.sort((a, b) => a.placementId - b.placementId);
   }
   useEffect( () => {
