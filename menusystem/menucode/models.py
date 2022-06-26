@@ -24,6 +24,8 @@ class Product(models.Model):
     price = models.FloatField( null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering=['id']
     def __str__(self) -> str:
         return self.name
 
